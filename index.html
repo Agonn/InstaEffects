@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>InstaEffects</title>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cssgram-cssgram.netdna-ssl.com/cssgram.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <style>
+        body::-webkit-scrollbar {
+            width: 0;
+            /*Remove scrollbar on chrome for better view */
+        }
+        /*.navbar-fixed{
+            position: absolute;
+            bottom:0; !important
+        } */
+        
+        #holder {
+            border: 10px dashed #ccc;
+            width: 100%;
+            min-height: 600px;
+            margin: 20px auto;
+        }
+        
+        #holder.hover {
+            border: 10px dashed #0c0;
+        }
+        
+        #holder img {
+            display: block;
+            margin: 10px auto;
+        }
+        
+        #holder p {
+            margin: 10px;
+            font-size: 14px;
+        }
+        
+        progress {
+            width: 100%;
+        }
+        
+        progress:after {
+            content: '%';
+        }
+        
+        .fail {
+            background: #c00;
+            padding: 2px;
+            color: #fff;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        img {
+            margin: auto;
+        }
+        
+        .btn-group-vertical > button {
+            margin-bottom: 2px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <section id="wrapper">
+                    <div id="carbonads-container">
+                        <div class="carbonad">
+                            <div id="azcarbon"></div>
+                            <script type="text/javascript">
+                            </script>
+                        </div>
+                    </div>
+                    <header>
+                        <h1 style="text-align:center">Drop image here, click image to remove it</h1>
+                    </header>
+
+
+                    <article>
+                        <div id="holder">
+                            <img class="img-responsive" width="800px" src="http://www.newyorker.com/wp-content/uploads/2016/01/Borowitz-Donald-Trump-1200.jpg">
+
+                        </div>
+                        <p id="upload" class="hidden">
+                            <label>Drag &amp; drop not supported, but you can still upload via this input field:
+                                <br>
+                                <input type="file">
+                            </label>
+                        </p>
+                        <p id="filereader">File API &amp; FileReader API not supported</p>
+                        <p id="formdata">XHR2's FormData is not supported</p>
+                        <p id="progress">XHR2's upload progress isn't supported</p>
+
+                    </article>
+
+            </div>
+
+            <div class="col-lg-6">
+                <div class="btn-group-vertical affix">
+                    Preview instagram filters
+                    <button type="button" id="Aden" class="btn btn-primary  btn-md ">Aden</button>
+
+                    <button type="button" id="Brannan" class="btn btn-primary  btn-md ">Brannan</button>
+
+                    <button type="button" id="Reyes" class="btn btn-primary  btn-md ">Reyes</button>
+
+                    <button type="button" id="Perpetua" class="btn btn-primary  btn-md ">Perpetua</button>
+
+                    <button type="button" id="Inkwell" class="btn btn-primary  btn-md ">Inkwell</button>
+
+                    <button type="button" id="Walden" class="btn btn-primary  btn-md ">Walden</button>
+
+                    <button type="button" id="Hudson" class="btn btn-primary  btn-md ">Hudson</button>
+
+                    <button type="button" id="Gingham" class="btn btn-primary  btn-md ">Gingham</button>
+
+                    <button type="button" id="Mayfair" class="btn btn-primary  btn-md ">Mayfair</button>
+
+                    <button type="button" id="Lofi" class="btn btn- btn-primary  btn-md ">Lofi</button>
+
+                    <button type="button" id="_1977" class="btn btn-primary  btn-md ">_1977</button>
+
+                    <button type="button" id="Brooklyn" class="btn btn-primary  btn-md ">Brooklyn</button>
+
+                    <button type="button" id="Nashville" class="btn btn-primary  btn-md ">Nashville</button>
+
+                    <button type="button" id="Lark" class="btn btn-primary  btn-md ">Lark</button>
+
+                    <button type="button" id="Moon" class="btn btn-primary  btn-md ">Moon</button>
+
+                    <button type="button" id="Clarendon" class="btn btn-primary  btn-md ">Clarendon</button>
+
+                    <button type="button" id="Willow" class="btn btn-primary  btn-md ">Willow</button>
+                </div>
+            </div>
+            <script>
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/14060/azcarbon_2_1_0_VERT";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+
+                var holder = document.getElementById('holder'),
+                    tests = {
+                        filereader: typeof FileReader != 'undefined',
+                        dnd: 'draggable' in document.createElement('span'),
+                        formdata: !!window.FormData,
+                        progress: "upload" in new XMLHttpRequest
+                    },
+                    support = {
+                        filereader: document.getElementById('filereader'),
+                        formdata: document.getElementById('formdata'),
+                        progress: document.getElementById('progress')
+                    },
+                    acceptedTypes = {
+                        'image/png': true,
+                        'image/jpeg': true,
+                        'image/gif': true
+                    },
+                    progress = document.getElementById('uploadprogress'),
+                    fileupload = document.getElementById('upload');
+
+                "filereader formdata progress".split(' ').forEach(function(api) {
+                    if (tests[api] === false) {
+                        support[api].className = 'fail';
+                    } else {
+                        // FFS. I could have done el.hidden = true, but IE doesn't support
+                        // hidden, so I tried to create a polyfill that would extend the
+                        // Element.prototype, but then IE10 doesn't even give me access
+                        // to the Element object. Brilliant.
+                        support[api].className = 'hidden';
+                    }
+                });
+
+                function previewfile(file) {
+                    if (tests.filereader === true && acceptedTypes[file.type] === true) {
+                        var reader = new FileReader();
+                        reader.onload = function(event) {
+                            var image = new Image();
+                            image.src = event.target.result;
+                            image.width = 600; // a fake resize
+                            image.height = 600;
+                            holder.appendChild(image);
+                        };
+
+                        reader.readAsDataURL(file);
+                    } else {
+                        holder.innerHTML += '<p>Uploaded ' + file.name + ' ' + (file.size ? (file.size / 1024 | 0) + 'K' : '');
+                        console.log(file);
+                    }
+                }
+
+                function readfiles(files) {
+                    debugger;
+                    var formData = tests.formdata ? new FormData() : null;
+                    for (var i = 0; i < files.length; i++) {
+                        if (tests.formdata) formData.append('file', files[i]);
+                        previewfile(files[i]);
+                    }
+
+                    // now post a new XHR request
+                    if (tests.formdata) {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', '/devnull.php');
+                        xhr.onload = function() {
+                            progress.value = progress.innerHTML = 100;
+                        };
+
+                        if (tests.progress) {
+                            xhr.upload.onprogress = function(event) {
+                                if (event.lengthComputable) {
+                                    var complete = (event.loaded / event.total * 100 | 0);
+                                    progress.value = progress.innerHTML = complete;
+                                }
+                            }
+                        }
+
+                        xhr.send(formData);
+                    }
+                }
+
+                if (tests.dnd) {
+                    holder.ondragover = function() {
+                        this.className = 'hover';
+                        // add stuff when holding an image on preview zone
+                        return false;
+                    };
+                    holder.ondragend = function() {
+                        this.className = '';
+                        return false;
+                    };
+                    holder.ondrop = function(e) {
+                        this.className = '';
+                        e.preventDefault();
+                        readfiles(e.dataTransfer.files);
+                    }
+                } else {
+                    fileupload.className = 'hidden';
+                    fileupload.querySelector('input').onchange = function() {
+                        readfiles(this.files);
+                    };
+                }
+
+                $("#Aden").hover(function() {
+                    $('img').toggleClass('aden');
+                });
+                $("#Brannan").hover(function() {
+                    $('img').toggleClass('brannan');
+                });
+                $("#Reyes").hover(function() {
+                    $('img').toggleClass('reyes');
+                });
+                $("#Perpetua").hover(function() {
+                    $('img').toggleClass('perpetua');
+                });
+                $("#Inkwell").hover(function() {
+                    $('img').toggleClass('inkwell');
+                });
+                $("#Walden").hover(function() {
+                    $('img').toggleClass('walden');
+                });
+                $("#Hudson").hover(function() {
+                    $('img').toggleClass('hudson');
+                });
+                $("#Gingham").hover(function() {
+                    $('img').toggleClass('gingham');
+                });
+                $("#Mayfair").hover(function() {
+                    $('img').toggleClass('mayfair');
+                });
+                $("#Lofi").hover(function() {
+                    $('img').toggleClass('lofi');
+                });
+                $("#_1977").hover(function() {
+                    $('img').toggleClass('_1977');
+                });
+                $("#Brooklyn").hover(function() {
+                    $('img').toggleClass('brooklyn');
+                });
+                $("#Nashville").hover(function() {
+                    $('img').toggleClass('nashville');
+                });
+                $("#Lark").hover(function() {
+                    $('img').toggleClass('lark');
+                });
+                $("#Moon").hover(function() {
+                    $('img').toggleClass('moon');
+                });
+                $("#Clarendon").hover(function() {
+                    $('img').toggleClass('clarendon');
+                });
+                $("#Willow").hover(function() {
+                    $('img').toggleClass('willow');
+                });
+
+                $("#holder").on('click', function() {
+
+                    $('img').fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                });
+            </script>
+
+</body>
